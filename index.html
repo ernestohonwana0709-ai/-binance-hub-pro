@@ -11,6 +11,18 @@
       gtag('config', 'G-55G06GZYWJ');
     </script>
 
+    <!-- Adcash Library & AutoTag (Corrigido) -->
+    <script id="aclib" type="text/javascript" src="https://acscdn.com/script/aclib.js"></script>
+    <script type="text/javascript">
+        document.getElementById('aclib').addEventListener('load', function() {
+            if (typeof aclib !== 'undefined' && aclib.runAutoTag) {
+                aclib.runAutoTag({
+                    zoneId: 's4owuxwibs',
+                });
+            }
+        });
+    </script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Binance Hub Pro | Ecossistema, Earn, Bots & Futuros</title>
@@ -1271,7 +1283,7 @@
                 faqTitle: "Foire Aux Questions (FAQ)",
                 faq1Q: "La création d'un compte Binance est-elle gratuite ?", faq1A: "Oui, créer un compte et vérifier le KYC est totalement gratuit. Vous ne payez que des frais minimes lors des transactions.",
                 faq2Q: "Comment fonctionne Binance Pool ?", faq2A: "Elle regroupe la puissance de calcul de mineurs mondiaux pour trouver des blocs avec consistance et distribuer des paiements quotidiens.",
-                footerText: "Développé à des fins éducatives. Investissez de manière responsable."
+                footerText: "Développé à des fins éducatives. Investissez de manière responsible."
             },
             de: {
                 navConv: "Konverter", navEco: "Ökosystem", navReg: "Registrieren",
