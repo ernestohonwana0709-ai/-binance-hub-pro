@@ -1,0 +1,1551 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Binance Hub Pro | Ecossistema, Earn, Bots & Futuros</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome para ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Biblioteca para gerar QR Code automaticamente -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <style>
+        :root {
+            --bg-main: #0b0e11;
+            --bg-card: #181a20;
+            --bg-card-hover: #1e2329;
+            --text-primary: #eaecef;
+            --text-secondary: #848e9c;
+            --accent-yellow: #fcd535;
+            --accent-yellow-hover: #f0b90b;
+            --border-color: #2b313a;
+            --success-color: #0ecb81;
+        }
+
+        /* Tema Claro Dinâmico */
+        body.light-theme {
+            --bg-main: #f8f9fa;
+            --bg-card: #ffffff;
+            --bg-card-hover: #f1f3f5;
+            --text-primary: #1a1a1a;
+            --text-secondary: #6c757d;
+            --border-color: #dee2e6;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-primary);
+            line-height: 1.7;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        /* Cabeçalho */
+        header {
+            background-color: var(--bg-main);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--accent-yellow);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 12px;
+            align-items: center;
+        }
+
+        nav ul li a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--accent-yellow);
+        }
+
+        /* Seletor de Línguas e Tema */
+        .lang-select {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 6px 10px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            outline: none;
+        }
+
+        .theme-toggle-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--accent-yellow);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .theme-toggle-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .nav-btn {
+            background-color: var(--accent-yellow);
+            color: #0b0e11 !important;
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-weight: 700 !important;
+            transition: background 0.3s !important;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 160px 5% 70px 5%;
+            text-align: center;
+            background: radial-gradient(circle at center, rgba(252, 213, 53, 0.08) 0%, transparent 60%);
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+            letter-spacing: -1px;
+        }
+
+        .hero h1 span {
+            color: var(--accent-yellow);
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 750px;
+            margin: 0 auto 35px auto;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-yellow);
+            color: #0b0e11;
+            padding: 14px 30px;
+            border-radius: 8px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(252, 213, 53, 0.2);
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-yellow-hover);
+            transform: translateY(-3px);
+        }
+
+        /* Secções Gerais */
+        section {
+            padding: 80px 5%;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .section-title h2 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+        }
+
+        .section-title p {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Grelha de Cartões Pro */
+        .grid-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(252, 213, 53, 0.4);
+            background-color: var(--bg-card-hover);
+        }
+
+        .card i {
+            font-size: 2.2rem;
+            color: var(--accent-yellow);
+            margin-bottom: 18px;
+        }
+
+        .card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .card p {
+            color: var(--text-secondary);
+            font-size: 0.93rem;
+            margin-bottom: 12px;
+        }
+
+        /* Caixa CTA com QR Code Limpa */
+        .cta-box {
+            text-align: center;
+            background: var(--bg-card);
+            padding: 45px 25px;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            max-width: 750px;
+            margin: 0 auto;
+        }
+
+        #qrcode {
+            background: #ffffff;
+            padding: 12px;
+            border-radius: 10px;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        /* Modal de Passo a Passo do Registo */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(6px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 3000;
+            padding: 20px;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-box {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            width: 100%;
+            max-width: 600px;
+            max-height: 90vh;
+            border-radius: 16px;
+            padding: 30px;
+            overflow-y: auto;
+            position: relative;
+            animation: scaleUp 0.3s ease;
+        }
+
+        @keyframes scaleUp {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 1.4rem;
+            color: var(--text-secondary);
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        .close-modal:hover {
+            color: var(--accent-yellow);
+        }
+
+        .steps-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .step-item-modal {
+            background-color: var(--bg-main);
+            border: 1px solid var(--border-color);
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .step-item-modal h4 {
+            color: var(--accent-yellow);
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+
+        .step-item-modal p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* ABAS EM FORMATO DE QUADRADO */
+        .tabs-grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .tab-square-btn {
+            background-color: var(--bg-card);
+            border: 2px solid var(--border-color);
+            border-radius: 16px;
+            padding: 30px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .tab-square-btn i {
+            font-size: 2.5rem;
+            color: var(--accent-yellow);
+        }
+
+        .tab-square-btn h3 {
+            font-size: 1.2rem;
+            color: var(--text-primary);
+        }
+
+        .tab-square-btn p {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+        }
+
+        .tab-square-btn:hover, .tab-square-btn.active {
+            border-color: var(--accent-yellow);
+            background-color: var(--bg-card-hover);
+            transform: translateY(-5px);
+        }
+
+        .tab-content-area {
+            display: none;
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 35px;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .tab-content-area.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Conversor Binance Style + Atalhos Rápidos */
+        .converter-card {
+            max-width: 500px;
+            margin: 0 auto;
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+        }
+
+        .quick-shortcuts {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .shortcut-chip {
+            background: var(--bg-main);
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .shortcut-chip:hover {
+            border-color: var(--accent-yellow);
+            color: var(--accent-yellow);
+        }
+
+        .converter-box {
+            background-color: var(--bg-main);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 16px 20px;
+        }
+
+        .converter-box-header {
+            display: flex;
+            justify-content: space-between;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            margin-bottom: 8px;
+        }
+
+        .converter-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .currency-selector-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .converter-row input {
+            background: transparent;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.8rem;
+            font-weight: 700;
+            width: 55%;
+            outline: none;
+        }
+
+        .swap-container {
+            text-align: center;
+            margin: -10px 0;
+            position: relative;
+            z-index: 10;
+        }
+
+        .swap-btn {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--accent-yellow);
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .swap-btn:hover {
+            background-color: var(--accent-yellow);
+            color: #0b0e11;
+            transform: rotate(180deg);
+        }
+
+        .preview-btn {
+            width: 100%;
+            background-color: var(--accent-yellow);
+            color: #0b0e11;
+            border: none;
+            padding: 15px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 1rem;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+
+        /* Simulador de Futuros */
+        .futures-calc-box {
+            background: var(--bg-main);
+            border: 1px solid var(--border-color);
+            padding: 25px;
+            border-radius: 12px;
+            margin-top: 25px;
+        }
+
+        .calc-input-group {
+            margin-bottom: 15px;
+        }
+
+        .calc-input-group label {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 5px;
+        }
+
+        .calc-input-group input, .calc-input-group select {
+            width: 100%;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 10px 14px;
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+            outline: none;
+        }
+
+        .calc-result {
+            background: var(--bg-card);
+            border-left: 4px solid var(--accent-yellow);
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 15px;
+        }
+
+        /* Modal Moedas */
+        .modal-overlay-currency {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            display: none;
+            justify-content: center;
+            align-items: flex-end;
+            z-index: 2000;
+        }
+
+        .modal-overlay-currency.active {
+            display: flex;
+        }
+
+        .modal-content-currency {
+            background-color: var(--bg-card);
+            width: 100%;
+            max-width: 500px;
+            max-height: 80vh;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            border: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .currency-list {
+            overflow-y: auto;
+            padding: 0 20px 20px 20px;
+        }
+
+        .currency-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 10px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .currency-item:hover {
+            background-color: var(--bg-card-hover);
+        }
+
+        .currency-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .currency-info i {
+            font-size: 1.5rem;
+            color: var(--accent-yellow);
+            width: 30px;
+            text-align: center;
+        }
+
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+        }
+
+        .glossary-item {
+            background: var(--bg-main);
+            border: 1px solid var(--border-color);
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .glossary-item h4 {
+            color: var(--accent-yellow);
+            margin-bottom: 8px;
+        }
+
+        .glossary-item p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            margin-bottom: 12px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 18px 22px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-question i {
+            color: var(--accent-yellow);
+            transition: transform 0.3s;
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            padding: 0 22px;
+            color: var(--text-secondary);
+            font-size: 0.93rem;
+            transition: all 0.3s ease;
+            background-color: var(--bg-card-hover);
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 200px;
+            padding: 18px 22px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 5%;
+            color: var(--text-secondary);
+            font-size: 0.88rem;
+            background-color: var(--bg-main);
+            border-top: 1px solid var(--border-color);
+        }
+
+        footer p span {
+            color: var(--accent-yellow);
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Cabeçalho -->
+    <header>
+        <a href="#" class="logo"><i class="fa-solid fa-coins" style="color: var(--accent-yellow);"></i>Binance<span>Hub Pro</span></a>
+        <div class="header-actions">
+            <!-- Seletor com as 6 línguas mais usadas na Internet -->
+            <select class="lang-select" id="langSelect" onchange="changeLanguage(this.value)">
+                <option value="pt">PT</option>
+                <option value="en">EN</option>
+                <option value="es">ES</option>
+                <option value="fr">FR</option>
+                <option value="de">DE</option>
+                <option value="zh">ZH</option>
+            </select>
+            <button class="theme-toggle-btn" onclick="toggleTheme()" title="Alternar Tema Claro/Escuro">
+                <i class="fa-solid fa-moon" id="themeIcon"></i>
+            </button>
+            <nav>
+                <ul>
+                    <li><a href="#conversor" data-i18n="navConv">Câmbio</a></li>
+                    <li><a href="#ecossistema" data-i18n="navEco">Ecossistema</a></li>
+                    <li><button onclick="openRegisterModal()" class="nav-btn" style="border:none; cursor:pointer;" data-i18n="navReg">Criar Conta</button></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1 data-i18n="heroTitle">O Portal Definitivo sobre a <span>Binance</span> & Trading</h1>
+        <p data-i18n="heroDesc">Aprende a rentabilizar o teu capital com Recompensas, Binance Earn, Pools, Bots de Trading, Futuros e Comércio P2P Avançado.</p>
+        <button onclick="openRegisterModal()" class="btn-primary"><i class="fa-solid fa-rocket"></i> <span data-i18n="heroBtn">Criar Conta na Binance Grátis</span></button>
+    </section>
+
+    <!-- Secção: CTA Limpa com QR Code -->
+    <section id="criar-conta">
+        <div class="cta-box">
+            <h3 data-i18n="ctaTitle">Junta-te ao Maior Ecossistema Cripto do Mundo</h3>
+            <p data-i18n="ctaDesc">Utiliza o link direto oficial ou aponta a câmara do teu telemóvel para o código QR para garantires o teu acesso imediato com vantagens exclusivas:</p>
+            
+            <div id="qrcode"></div>
+
+            <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center;">
+                <a href="https://www.binance.com/referral/earn-together/refer2earn-usdc/claim?hl=pt-PT&ref=GRO_28502_3DRT9&utm_source=referral_entrance" target="_blank" class="btn-primary"><i class="fa-solid fa-user-plus"></i> <span data-i18n="ctaRegBtn">Registar na Binance</span></a>
+                <button onclick="openRegisterModal()" class="btn-primary" style="background-color: transparent; border: 1px solid var(--accent-yellow); color: var(--accent-yellow);"><i class="fa-solid fa-list-check"></i> <span data-i18n="ctaStepBtn">Ver Passo a Passo</span></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- MODAL DE PASSO A PASSO -->
+    <div class="modal-overlay" id="registerModal">
+        <div class="modal-box">
+            <button class="close-modal" onclick="closeRegisterModal()"><i class="fa-solid fa-xmark"></i></button>
+            <div class="section-title" style="margin-bottom: 20px;">
+                <h2 data-i18n="modalTitle">Passo a Passo para Criar Conta</h2>
+                <p data-i18n="modalSubtitle">Guia rápido e seguro para iniciares a tua jornada.</p>
+            </div>
+            <div class="steps-list">
+                <div class="step-item-modal">
+                    <h4 data-i18n="step1Title">01. Acede ao Link Oficial</h4>
+                    <p data-i18n="step1Desc">Clica no botão de registo ou lê o código QR oficial para abrires diretamente a página encriptada de boas-vindas da Binance.</p>
+                </div>
+                <div class="step-item-modal">
+                    <h4 data-i18n="step2Title">02. Registo de Credenciais</h4>
+                    <p data-i18n="step2Desc">Introduz o teu e-mail ativo ou telemóvel e cria uma senha forte contendo letras maiúsculas, números e carateres especiais.</p>
+                </div>
+                <div class="step-item-modal">
+                    <h4 data-i18n="step3Title">03. Verificação de Identidade (KYC)</h4>
+                    <p data-i18n="step3Desc">Envia uma fotografia legível do teu documento oficial e conclui a validação facial biométrica em segundos.</p>
+                </div>
+                <div class="step-item-modal">
+                    <h4 data-i18n="step4Title">04. Blindagem de Segurança (2FA)</h4>
+                    <p data-i18n="step4Desc">Configura obrigatoriamente a autenticação de dois fatores com o Google Authenticator para proteger os teus ativos.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Conversor Binance Style + Atalhos Rápidos -->
+    <section id="conversor">
+        <div class="section-title">
+            <h2 data-i18n="convTitle">Conversão Instantânea</h2>
+            <p data-i18n="convDesc">Simulador avançado de câmbio em tempo real idêntico ao painel oficial da Binance.</p>
+        </div>
+
+        <div class="converter-card">
+            <div class="quick-shortcuts">
+                <span style="font-size: 0.8rem; color: var(--text-secondary); align-self: center;" data-i18n="shortcutsLabel">Atalhos:</span>
+                <button class="shortcut-chip" onclick="quickSelect('USDT')">USDT</button>
+                <button class="shortcut-chip" onclick="quickSelect('BTC')">BTC</button>
+                <button class="shortcut-chip" onclick="quickSelect('ETH')">ETH</button>
+                <button class="shortcut-chip" onclick="quickSelect('SOL')">SOL</button>
+                <button class="shortcut-chip" onclick="quickSelect('BNB')">BNB</button>
+            </div>
+
+            <div class="converter-box">
+                <div class="converter-box-header">
+                    <span data-i18n="fromLabel">De</span>
+                    <span>Saldo: --</span>
+                </div>
+                <div class="converter-row">
+                    <input type="number" id="amountFrom" value="100" min="0" oninput="calculateConversion()">
+                    <button class="currency-selector-btn" onclick="openCurrencyModal('from')">
+                        <i id="iconFrom" class="fa-solid fa-shield-halved"></i>
+                        <span id="textFrom">USDT</span>
+                        <i class="fa-solid fa-chevron-down" style="font-size: 0.8rem;"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="swap-container">
+                <button class="swap-btn" onclick="swapCurrencies()" title="Inverter moedas">
+                    <i class="fa-solid fa-arrow-right-arrow-left fa-rotate-90"></i>
+                </button>
+            </div>
+
+            <div class="converter-box" style="margin-top: 5px;">
+                <div class="converter-box-header">
+                    <span data-i18n="toLabel">Para (Estimado)</span>
+                    <span id="exchangeRateInfo">1 USDT = --</span>
+                </div>
+                <div class="converter-row">
+                    <input type="text" id="amountTo" readonly style="color: var(--accent-yellow);">
+                    <button class="currency-selector-btn" onclick="openCurrencyModal('to')">
+                        <i id="iconTo" class="fa-brands fa-btc"></i>
+                        <span id="textTo">BTC</span>
+                        <i class="fa-solid fa-chevron-down" style="font-size: 0.8rem;"></i>
+                    </button>
+                </div>
+            </div>
+
+            <button class="preview-btn" onclick="alert('Simulação efetuada com sucesso! Cria a tua conta na Binance para negociar em direto.')" data-i18n="previewBtn">Pré-visualizar Conversão</button>
+        </div>
+    </section>
+
+    <!-- MODAL SELEÇÃO MOEDAS -->
+    <div class="modal-overlay-currency" id="currencyModal">
+        <div class="modal-content-currency">
+            <div style="padding: 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color);">
+                <h3 id="modalTitle" data-i18n="selectAsset">Selecionar Ativo</h3>
+                <i class="fa-solid fa-xmark" onclick="closeCurrencyModal()" style="cursor: pointer; font-size: 1.2rem;"></i>
+            </div>
+            <div style="padding: 15px 20px;">
+                <input type="text" id="searchInput" placeholder="Pesquisar moeda (ex: BTC, SOL, MZN)..." oninput="filterCurrencies()" style="width: 100%; background: var(--bg-main); border: 1px solid var(--border-color); padding: 12px; border-radius: 8px; color: var(--text-primary); outline: none;">
+            </div>
+            <div class="currency-list" id="currencyList"></div>
+        </div>
+    </div>
+
+    <!-- ÁREA DE ABAS EM FORMATO DE QUADRADO -->
+    <section id="ecossistema">
+        <div class="section-title">
+            <h2 data-i18n="ecoTitle">Ecossistema & Estratégias Pro</h2>
+            <p data-i18n="ecoSubtitle">Clica num dos blocos abaixo para explorar detalhadamente cada área do portal.</p>
+        </div>
+
+        <div class="tabs-grid-container">
+            <div class="tab-square-btn active" onclick="switchTab(event, 'tab1')">
+                <i class="fa-solid fa-gift"></i>
+                <div>
+                    <h3 data-i18n="tab1Name">Atividades & Recompensas</h3>
+                    <p data-i18n="tab1Desc">Rewards Hub, Learn & Earn e Programas de Indicação.</p>
+                </div>
+            </div>
+            <div class="tab-square-btn" onclick="switchTab(event, 'tab2')">
+                <i class="fa-solid fa-piggy-bank"></i>
+                <div>
+                    <h3 data-i18n="tab2Name">Earn & Binance Pool</h3>
+                    <p data-i18n="tab2Desc">Simple Earn, Staking e Mineração Institucional.</p>
+                </div>
+            </div>
+            <div class="tab-square-btn" onclick="switchTab(event, 'tab3')">
+                <i class="fa-solid fa-robot"></i>
+                <div>
+                    <h3 data-i18n="tab3Name">Bots, Futuros & P2P</h3>
+                    <p data-i18n="tab3Desc">Grid Trading, Derivativos e Segurança P2P.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ABA 1 -->
+        <div id="tab1" class="tab-content-area active">
+            <div class="section-title" style="margin-bottom: 25px;">
+                <h3 style="color: var(--accent-yellow); font-size: 1.6rem;" data-i18n="t1Head">Atividades, Missões e Recompensas</h3>
+                <p data-i18n="t1Sub">Como rentabilizar as campanhas de boas-vindas na Binance.</p>
+            </div>
+            <div class="grid-cards">
+                <div class="card">
+                    <i class="fa-solid fa-bullseye"></i>
+                    <h3>Rewards Hub</h3>
+                    <p data-i18n="t1Card1">Painel oficial onde a Binance distribui vales de desconto em taxas e vouchers em dinheiro após o cumprimento de tarefas.</p>
+                </div>
+                <div class="card">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                    <h3>Learn & Earn</h3>
+                    <p data-i18n="t1Card2">Módulos educativos gratuitos sobre novos projetos cripto com quizzes rápidos e recompensas diretas em tokens.</p>
+                </div>
+                <div class="card">
+                    <i class="fa-solid fa-handshake-angle"></i>
+                    <h3 data-i18n="t1Card3Title">Programa de Indicação</h3>
+                    <p data-i18n="t1Card3">Partilha o teu link pessoal de convite para ganhares comissões vitalícias sobre as taxas geradas pelos teus amigos.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ABA 2 -->
+        <div id="tab2" class="tab-content-area">
+            <div class="section-title" style="margin-bottom: 25px;">
+                <h3 style="color: var(--accent-yellow); font-size: 1.6rem;" data-i18n="t2Head">Rendimento Passivo: Earn & Binance Pool</h3>
+                <p data-i18n="t2Sub">Faz o teu capital render com Simple Earn, Staking e Mineração.</p>
+            </div>
+            <div class="grid-cards">
+                <div class="card">
+                    <i class="fa-solid fa-coins"></i>
+                    <h3>Simple Earn (Flexível & Bloqueado)</h3>
+                    <p data-i18n="t2Card1">Coloca criptomoedas inativas a render juros diários com total flexibilidade de resgate ou prazos fixos vantajosos.</p>
+                </div>
+                <div class="card">
+                    <i class="fa-solid fa-lock"></i>
+                    <h3>Staking On-Chain</h3>
+                    <p data-i18n="t2Card2">Participa na validação de redes Proof-of-Stake (Ethereum, Cardano, Solana) e obtém recompensas nativas automáticas.</p>
+                </div>
+                <div class="card">
+                    <i class="fa-solid fa-server"></i>
+                    <h3>Binance Pool (Mineração)</h3>
+                    <p data-i18n="t2Card3">Plataforma dedicada a mineradores profissionais de Bitcoin (BTC), oferecendo pagamentos diários e mineração combinada.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ABA 3 -->
+        <div id="tab3" class="tab-content-area">
+            <div class="section-title" style="margin-bottom: 25px;">
+                <h3 style="color: var(--accent-yellow); font-size: 1.6rem;" data-i18n="t3Head">Estratégias Avançadas: Bots, Futuros & P2P</h3>
+                <p data-i18n="t3Sub">Automatização de ordens, derivativos e comércio local seguro.</p>
+            </div>
+            <div class="grid-cards" style="margin-bottom: 30px;">
+                <div class="card">
+                    <i class="fa-solid fa-robot"></i>
+                    <h3 data-i18n="t3Card1Title">Bots de Grelha (Grid Trading)</h3>
+                    <p data-i18n="t3Card1">Automatiza compras em baixa e vendas em alta dentro de uma faixa de preço configurada sem supervisão constante.</p>
+                </div>
+                <div class="card">
+                    <i class="fa-solid fa-shield-cat"></i>
+                    <h3 data-i18n="t3Card2Title">Comércio P2P Avançado</h3>
+                    <p data-i18n="t3Card2">Usa contas bancárias dedicadas, valida sempre o extrato físico antes de libertar fundos e aproveita oportunidades de arbitragem.</p>
+                </div>
+            </div>
+
+            <!-- Calculadora de Risco para Futuros -->
+            <div class="futures-calc-box">
+                <h4 style="color: var(--accent-yellow); margin-bottom: 15px;"><i class="fa-solid fa-calculator"></i> <span data-i18n="calcTitle">Simulador de Risco & Alavancagem para Futuros</span></h4>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+                    <div class="calc-input-group">
+                        <label data-i18n="calcCap">Capital Inicial (USDT)</label>
+                        <input type="number" id="futuresCapital" value="100" oninput="calculateFutures()">
+                    </div>
+                    <div class="calc-input-group">
+                        <label data-i18n="calcLev">Alavancagem</label>
+                        <select id="futuresLeverage" onchange="calculateFutures()">
+                            <option value="5">5x</option>
+                            <option value="10" selected>10x</option>
+                            <option value="20">20x</option>
+                            <option value="50">50x</option>
+                            <option value="100">100x</option>
+                        </select>
+                    </div>
+                    <div class="calc-input-group">
+                        <label data-i18n="calcVar">Variação Esperada do Preço (%)</label>
+                        <input type="number" id="futuresChange" value="5" oninput="calculateFutures()">
+                    </div>
+                </div>
+                <div class="calc-result" id="futuresResult">
+                    <!-- Preenchido via JS -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Secção: Smart Money Concepts -->
+    <section id="smc">
+        <div class="section-title">
+            <h2 data-i18n="smcTitle">Smart Money Concepts (SMC) & Price Action</h2>
+            <p data-i18n="smcSub">Compreende como as instituições movimentam o mercado.</p>
+        </div>
+        <div class="grid-cards">
+            <div class="card">
+                <i class="fa-solid fa-building-columns"></i>
+                <h3>Order Blocks (OB)</h3>
+                <p data-i18n="smc1">Zonas de alta liquidez deixadas pelas instituições antes de um movimento agressivo de expansão.</p>
+            </div>
+            <div class="card">
+                <i class="fa-solid fa-bolt"></i>
+                <h3>Fair Value Gaps (FVG)</h3>
+                <p data-i18n="smc2">Desequilíbrios no livro de ordens gerados por impulsos rápidos que atuam como ímanes para o preço.</p>
+            </div>
+            <div class="card">
+                <i class="fa-solid fa-water"></i>
+                <h3 data-i18n="smc3Title">Liquidity Sweeps</h3>
+                <p data-i18n="smc3">Varreduras de stops localizados acima de topos ou abaixo de fundos antes da verdadeira reversão institucional.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Glossário -->
+    <section id="glossario">
+        <div class="section-title">
+            <h2 data-i18n="glossTitle">Glossário Essencial Web3</h2>
+            <p data-i18n="glossSub">Termos fundamentais explicados de forma simples.</p>
+        </div>
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <h4>KYC</h4>
+                <p data-i18n="g1">Verificação de identidade exigida para prevenir fraudes.</p>
+            </div>
+            <div class="glossary-item">
+                <h4>Staking</h4>
+                <p data-i18n="g2">Bloqueio de ativos para validar redes e gerar rendimento passivo.</p>
+            </div>
+            <div class="glossary-item">
+                <h4>HODL</h4>
+                <p data-i18n="g3">Estratégia de manter criptomoedas a longo prazo.</p>
+            </div>
+            <div class="glossary-item">
+                <h4 data-i18n="g4Title">Bull vs Bear</h4>
+                <p data-i18n="g4">Mercado em alta otimista vs ciclo prolongado de queda.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq">
+        <div class="section-title">
+            <h2 data-i18n="faqTitle">Perguntas Frequentes (FAQ)</h2>
+        </div>
+        <div class="faq-container">
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span data-i18n="faq1Q">A criação de conta na Binance é gratuita?</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer" data-i18n="faq1A">
+                    Sim, criar conta e verificar o KYC é totalmente gratuito. Só pagas taxas mínimas ao realizar transações.
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span data-i18n="faq2Q">Como funciona a Binance Pool?</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer" data-i18n="faq2A">
+                    Agrupa poder computacional de mineradores globais para encontrar blocos com consistência e distribuir pagamentos diários.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rodapé -->
+    <footer>
+        <p>&copy; 2026 <span>BinanceHub Pro</span>. <span data-i18n="footerText">Desenvolvido para fins educativos. Investe com responsabilidade.</span></p>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Dicionário com as 6 línguas principais da Internet (PT, EN, ES, FR, DE, ZH)
+        const translations = {
+            pt: {
+                navConv: "Câmbio", navEco: "Ecossistema", navReg: "Criar Conta",
+                heroTitle: "O Portal Definitivo sobre a <span>Binance</span> & Trading",
+                heroDesc: "Aprende a rentabilizar o teu capital com Recompensas, Binance Earn, Pools, Bots de Trading, Futuros e Comércio P2P Avançado.",
+                heroBtn: "Criar Conta na Binance Grátis",
+                ctaTitle: "Junta-te ao Maior Ecossistema Cripto do Mundo",
+                ctaDesc: "Utiliza o link direto oficial ou aponta a câmara do teu telemóvel para o código QR para garantires o teu acesso imediato com vantagens exclusivas:",
+                ctaRegBtn: "Registar na Binance", ctaStepBtn: "Ver Passo a Passo",
+                modalTitle: "Passo a Passo para Criar Conta", modalSubtitle: "Guia rápido e seguro para iniciares a tua jornada.",
+                step1Title: "01. Acede ao Link Oficial", step1Desc: "Clica no botão de registo ou lê o código QR oficial para abrires diretamente a página encriptada de boas-vindas da Binance.",
+                step2Title: "02. Registo de Credenciais", step2Desc: "Introduz o teu e-mail ativo ou telemóvel e cria uma senha forte contendo letras maiúsculas, números e carateres especiais.",
+                step3Title: "03. Verificação de Identidade (KYC)", step3Desc: "Envia uma fotografia legível do teu documento oficial e conclui a validação facial biométrica em segundos.",
+                step4Title: "04. Blindagem de Segurança (2FA)", step4Desc: "Configura obrigatoriamente a autenticação de dois fatores com o Google Authenticator para proteger os teus ativos.",
+                convTitle: "Conversão Instantânea", convDesc: "Simulador avançado de câmbio em tempo real idêntico ao painel oficial da Binance.",
+                shortcutsLabel: "Atalhos:", fromLabel: "De", toLabel: "Para (Estimado)", previewBtn: "Pré-visualizar Conversão", selectAsset: "Selecionar Ativo",
+                ecoTitle: "Ecossistema & Estratégias Pro", ecoSubtitle: "Clica num dos blocos abaixo para explorar detalhadamente cada área do portal.",
+                tab1Name: "Atividades & Recompensas", tab1Desc: "Rewards Hub, Learn & Earn e Programas de Indicação.",
+                tab2Name: "Earn & Binance Pool", tab2Desc: "Simple Earn, Staking e Mineração Institucional.",
+                tab3Name: "Bots, Futuros & P2P", tab3Desc: "Grid Trading, Derivativos e Segurança P2P.",
+                t1Head: "Atividades, Missões e Recompensas", t1Sub: "Como rentabilizar as campanhas de boas-vindas na Binance.",
+                t1Card1: "Painel oficial onde a Binance distribui vales de desconto em taxas e vouchers em dinheiro após o cumprimento de tarefas.",
+                t1Card2: "Módulos educativos gratuitos sobre novos projetos cripto com quizzes rápidos e recompensas diretas em tokens.",
+                t1Card3Title: "Programa de Indicação", t1Card3: "Partilha o teu link pessoal de convite para ganhares comissões vitalícias sobre as taxas geradas pelos teus amigos.",
+                t2Head: "Rendimento Passivo: Earn & Binance Pool", t2Sub: "Faz o teu capital render com Simple Earn, Staking e Mineração.",
+                t2Card1: "Coloca criptomoedas inativas a render juros diários com total flexibilidade de resgate ou prazos fixos vantajosos.",
+                t2Card2: "Participa na validação de redes Proof-of-Stake (Ethereum, Cardano, Solana) e obtém recompensas nativas automáticas.",
+                t2Card3: "Plataforma dedicada a mineradores profissionais de Bitcoin (BTC), oferecendo pagamentos diários e mineração combinada.",
+                t3Head: "Estratégias Avançadas: Bots, Futuros & P2P", t3Sub: "Automatização de ordens, derivativos e comércio local seguro.",
+                t3Card1Title: "Bots de Grelha (Grid Trading)", t3Card1: "Automatiza compras em baixa e vendas em alta dentro de uma faixa de preço configurada sem supervisão constante.",
+                t3Card2Title: "Comércio P2P Avançado", t3Card2: "Usa contas bancárias dedicadas, valida sempre o extrato físico antes de libertar fundos e aproveita oportunidades de arbitragem.",
+                calcTitle: "Simulador de Risco & Alavancagem para Futuros", calcCap: "Capital Inicial (USDT)", calcLev: "Alavancagem", calcVar: "Variação Esperada do Preço (%)",
+                smcTitle: "Smart Money Concepts (SMC) & Price Action", smcSub: "Compreende como as instituições movimentam o mercado.",
+                smc1: "Zonas de alta liquidez deixadas pelas instituições antes de um movimento agressivo de expansão.",
+                smc2: "Desequilíbrios no livro de ordens gerados por impulsos rápidos que atuam como ímanes para o preço.",
+                smc3Title: "Liquidity Sweeps", smc3: "Varreduras de stops localizados acima de topos ou abaixo de fundos antes da verdadeira reversão institucional.",
+                glossTitle: "Glossário Essencial Web3", glossSub: "Termos fundamentais explicados de forma simples.",
+                g1: "Verificação de identidade exigida para prevenir fraudes.", g2: "Bloqueio de ativos para validar redes e gerar rendimento passivo.",
+                g3: "Estratégia de manter criptomoedas a longo prazo.", g4Title: "Bull vs Bear", g4: "Mercado em alta otimista vs ciclo prolongado de queda.",
+                faqTitle: "Perguntas Frequentes (FAQ)",
+                faq1Q: "A criação de conta na Binance é gratuita?", faq1A: "Sim, criar conta e verificar o KYC é totalmente gratuito. Só pagas taxas mínimas ao realizar transações.",
+                faq2Q: "Como funciona a Binance Pool?", faq2A: "Agrupa poder computacional de mineradores globais para encontrar blocos com consistência e distribuir pagamentos diários.",
+                footerText: "Desenvolvido para fins educativos. Investe com responsabilidade."
+            },
+            en: {
+                navConv: "Converter", navEco: "Ecosystem", navReg: "Sign Up",
+                heroTitle: "The Ultimate Portal on <span>Binance</span> & Trading",
+                heroDesc: "Learn to monetize your capital with Rewards, Binance Earn, Pools, Trading Bots, Futures, and Advanced P2P Trading.",
+                heroBtn: "Create Free Binance Account",
+                ctaTitle: "Join the World's Largest Crypto Ecosystem",
+                ctaDesc: "Use the official direct link or point your phone camera to the QR code to secure your immediate access with exclusive perks:",
+                ctaRegBtn: "Register on Binance", ctaStepBtn: "View Step-by-Step",
+                modalTitle: "Step-by-Step to Create an Account", modalSubtitle: "Quick and secure guide to start your journey.",
+                step1Title: "01. Access Official Link", step1Desc: "Click the register button or scan the official QR code to open Binance's encrypted welcome page directly.",
+                step2Title: "02. Credential Registration", step2Desc: "Enter your active email or phone and create a strong password containing uppercase letters, numbers, and special characters.",
+                step3Title: "03. Identity Verification (KYC)", step3Desc: "Submit a clear photo of your official ID document and complete biometric facial validation in seconds.",
+                step4Title: "04. Security Shield (2FA)", step4Desc: "Mandatorily configure two-factor authentication with Google Authenticator to protect your assets.",
+                convTitle: "Instant Conversion", convDesc: "Advanced real-time exchange simulator identical to the official Binance panel.",
+                shortcutsLabel: "Shortcuts:", fromLabel: "From", toLabel: "To (Estimated)", previewBtn: "Preview Conversion", selectAsset: "Select Asset",
+                ecoTitle: "Ecosystem & Pro Strategies", ecoSubtitle: "Click one of the blocks below to explore each area of the portal in detail.",
+                tab1Name: "Activities & Rewards", tab1Desc: "Rewards Hub, Learn & Earn, and Referral Programs.",
+                tab2Name: "Earn & Binance Pool", tab2Desc: "Simple Earn, Staking, and Institutional Mining.",
+                tab3Name: "Bots, Futures & P2P", tab3Desc: "Grid Trading, Derivatives, and P2P Security.",
+                t1Head: "Activities, Missions & Rewards", t1Sub: "How to monetize welcome campaigns on Binance.",
+                t1Card1: "Official dashboard where Binance distributes fee discount vouchers and token vouchers after completing tasks.",
+                t1Card2: "Free educational modules on new crypto projects with quick quizzes and direct token rewards.",
+                t1Card3Title: "Referral Program", t1Card3: "Share your personal invite link to earn lifetime commissions on fees generated by your friends.",
+                t2Head: "Passive Income: Earn & Binance Pool", t2Sub: "Make your capital grow with Simple Earn, Staking, and Mining.",
+                t2Card1: "Put idle cryptocurrencies to earn daily interest with total redemption flexibility or advantageous fixed terms.",
+                t2Card2: "Participate in Proof-of-Stake network validation (Ethereum, Cardano, Solana) and get automatic native rewards.",
+                t2Card3: "Platform dedicated to professional Bitcoin (BTC) miners, offering daily payouts and merged mining.",
+                t3Head: "Advanced Strategies: Bots, Futures & P2P", t3Sub: "Order automation, derivatives, and secure local trading.",
+                t3Card1Title: "Grid Trading Bots", t3Card1: "Automate low-buys and high-sells within a configured price range without constant supervision.",
+                t3Card2Title: "Advanced P2P Trading", t3Card2: "Use dedicated bank accounts, always validate physical statements before releasing funds, and seize arbitrage opportunities.",
+                calcTitle: "Futures Risk & Leverage Simulator", calcCap: "Initial Capital (USDT)", calcLev: "Leverage", calcVar: "Expected Price Change (%)",
+                smcTitle: "Smart Money Concepts (SMC) & Price Action", smcSub: "Understand how institutions move the market.",
+                smc1: "High liquidity zones left by institutions before an aggressive expansion move.",
+                smc2: "Order book imbalances generated by rapid impulses acting as magnets for price.",
+                smc3Title: "Liquidity Sweeps", smc3: "Sweeps of stops located above highs or below lows before true institutional reversal.",
+                glossTitle: "Essential Web3 Glossary", glossSub: "Fundamental terms explained simply.",
+                g1: "Identity verification required to prevent fraud.", g2: "Locking assets to validate networks and generate passive income.",
+                g3: "Strategy of holding cryptocurrencies long-term.", g4Title: "Bull vs Bear", g4: "Optimistic bull market vs prolonged bear cycle.",
+                faqTitle: "Frequently Asked Questions (FAQ)",
+                faq1Q: "Is creating a Binance account free?", faq1A: "Yes, creating an account and verifying KYC is completely free. You only pay minimal fees when trading.",
+                faq2Q: "How does Binance Pool work?", faq2A: "It aggregates computing power from global miners to consistently find blocks and distribute daily payouts.",
+                footerText: "Developed for educational purposes. Invest responsibly."
+            },
+            es: {
+                navConv: "Cambio", navEco: "Ecosistema", navReg: "Crear Cuenta",
+                heroTitle: "El Portal Definitivo sobre <span>Binance</span> & Trading",
+                heroDesc: "Aprende a rentabilizar tu capital con Recompensas, Binance Earn, Pools, Bots de Trading, Futuros y Comercio P2P Avanzado.",
+                heroBtn: "Crear Cuenta Gratis en Binance",
+                ctaTitle: "Únete al Ecosistema Cripto Más Grande del Mundo",
+                ctaDesc: "Usa el enlace directo oficial o apunta la cámara de tu móvil al código QR para asegurar tu acceso inmediato con ventajas exclusivas:",
+                ctaRegBtn: "Registrarse en Binance", ctaStepBtn: "Ver Paso a Paso",
+                modalTitle: "Paso a Paso para Crear Cuenta", modalSubtitle: "Guía rápida y segura para iniciar tu viaje.",
+                step1Title: "01. Accede al Enlace Oficial", step1Desc: "Haz clic en el botón de registro o escanea el código QR oficial para abrir directamente la página encriptada de bienvenida de Binance.",
+                step2Title: "02. Registro de Credenciales", step2Desc: "Introduce tu correo activo o móvil y crea una contraseña fuerte con mayúsculas, números y caracteres especiales.",
+                step3Title: "03. Verificación de Identidad (KYC)", step3Desc: "Envía una foto clara de tu documento oficial y completa la validación facial biométrica en segundos.",
+                step4Title: "04. Escudo de Seguridad (2FA)", step4Desc: "Configura obligatoriamente la autenticación de dos factores con Google Authenticator para proteger tus activos.",
+                convTitle: "Conversión Instantánea", convDesc: "Simulador avanzado de cambio en tiempo real idéntico al panel oficial de Binance.",
+                shortcutsLabel: "Atajos:", fromLabel: "De", toLabel: "A (Estimado)", previewBtn: "Pre visualizar Conversión", selectAsset: "Seleccionar Activo",
+                ecoTitle: "Ecosistema & Estratégias Pro", ecoSubtitle: "Haz clic en uno de los bloques abajo para explorar detalladamente cada área del portal.",
+                tab1Name: "Actividades & Recompensas", tab1Desc: "Rewards Hub, Learn & Earn y Programas de Referidos.",
+                tab2Name: "Earn & Binance Pool", tab2Desc: "Simple Earn, Staking y Minería Institucional.",
+                tab3Name: "Bots, Futuros & P2P", tab3Desc: "Grid Trading, Derivativos y Seguridad P2P.",
+                t1Head: "Actividades, Misiones y Recompensas", t1Sub: "Cómo rentabilizar las campañas de bienvenida en Binance.",
+                t1Card1: "Panel oficial donde Binance distribuye vales de descuento en comisiones y vouchers en dinero tras cumplir tareas.",
+                t1Card2: "Módulos educativos gratuitos sobre nuevos proyectos cripto con cuestionarios rápidos y recompensas directas en tokens.",
+                t1Card3Title: "Programa de Referidos", t1Card3: "Comparte tu enlace personal de invitación para ganar comisiones vitalicias sobre las comisiones generadas por tus amigos.",
+                t2Head: "Ingresos Pasivos: Earn & Binance Pool", t2Sub: "Haz que tu capital rinda con Simple Earn, Staking y Minería.",
+                t2Card1: "Coloca criptomonedas inactivas a generar intereses diarios con total flexibilidad de retiro o plazos fijos ventajosos.",
+                t2Card2: "Participa en la validación de redes Proof-of-Stake (Ethereum, Cardano, Solana) y obtén recompensas nativas automáticas.",
+                t2Card3: "Plataforma dedicada a mineros profesionales de Bitcoin (BTC), ofreciendo pagos diarios y minería combinada.",
+                t3Head: "Estrategias Avanzadas: Bots, Futuros & P2P", t3Sub: "Automatización de órdenes, derivados y comercio local seguro.",
+                t3Card1Title: "Bots de Parrilla (Grid Trading)", t3Card1: "Automatiza compras en baja y ventas en alta dentro de un rango de precios configurado sin supervisión constante.",
+                t3Card2Title: "Comercio P2P Avanzado", t3Card2: "Usa cuentas bancarias dedicadas, valida siempre el extracto físico antes de liberar fondos y aprovecha oportunidades de arbitraje.",
+                calcTitle: "Simulador de Riesgo y Apalancamiento para Futuros", calcCap: "Capital Inicial (USDT)", calcLev: "Apalancamiento", calcVar: "Variación Esperada del Precio (%)",
+                smcTitle: "Smart Money Concepts (SMC) & Price Action", smcSub: "Comprende cómo las instituciones mueven el mercado.",
+                smc1: "Zonas de alta liquidez dejadas por las instituciones antes de un movimiento agresivo de expansión.",
+                smc2: "Desequilibrios en el libro de órdenes generados por impulsos rápidos que actúan como imanes para el precio.",
+                smc3Title: "Liquidity Sweeps", smc3: "Barridos de stops ubicados sobre máximos o bajo mínimos antes de la verdadera reversión institucional.",
+                glossTitle: "Glosario Esencial Web3", glossSub: "Términos fundamentales explicados de forma sencilla.",
+                g1: "Verificación de identidad exigida para prevenir fraudes.", g2: "Bloqueo de activos para validar redes y generar ingresos pasivos.",
+                g3: "Estrategia de mantener criptomonedas a largo plazo.", g4Title: "Bull vs Bear", g4: "Mercado alcista optimista vs ciclo prolongado bajista.",
+                faqTitle: "Preguntas Frecuentes (FAQ)",
+                faq1Q: "¿La creación de cuenta en Binance es gratuita?", faq1A: "Sí, crear una cuenta y verificar el KYC es totalmente gratuito. Solo pagas tarifas mínimas al realizar transacciones.",
+                faq2Q: "¿Cómo funciona Binance Pool?", faq2A: "Agrupa poder de cómputo de mineros globales para encontrar bloques con consistencia y distribuir pagos diarios.",
+                footerText: "Desarrollado con fines educativos. Invierte con responsabilidad."
+            },
+            fr: {
+                navConv: "Convertisseur", navEco: "Écosystème", navReg: "S'inscrire",
+                heroTitle: "Le Portail Ultime sur <span>Binance</span> & le Trading",
+                heroDesc: "Apprenez à rentabiliser votre capital grâce aux Récompenses, Binance Earn, Pools, Bots de Trading, Futures et P2P Avancé.",
+                heroBtn: "Créer un Compte Binance Gratuit",
+                ctaTitle: "Rejoignez le Plus Grand Écosystème Crypto au Monde",
+                ctaDesc: "Utilisez le lien direct officiel ou scannez le code QR avec votre téléphone pour garantir un accès immédiat avec des avantages exclusifs :",
+                ctaRegBtn: "S'inscrire sur Binance", ctaStepBtn: "Voir le Guide",
+                modalTitle: "Guide Étape par Étape", modalSubtitle: "Guide rapide et sécurisé pour commencer.",
+                step1Title: "01. Accéder au Lien Officiel", step1Desc: "Cliquez sur le bouton ou scannez le QR code pour ouvrir la page de bienvenue officielle de Binance.",
+                step2Title: "02. Enregistrement des Identifiants", step2Desc: "Entrez votre e-mail ou téléphone et créez un mot de passe fort avec des majuscules, chiffres et caractères spéciaux.",
+                step3Title: "03. Vérification d'Identité (KYC)", step3Desc: "Envoyez une photo claire de votre pièce d'identité et terminez la validation faciale en quelques secondes.",
+                step4Title: "04. Sécurité (2FA)", step4Desc: "Configurez l'authentification à deux facteurs avec Google Authenticator pour protéger vos actifs.",
+                convTitle: "Conversion Instantanée", convDesc: "Simulateur de change avancé en temps réel identique au panneau officiel Binance.",
+                shortcutsLabel: "Raccourcis :", fromLabel: "De", toLabel: "Vers (Estimé)", previewBtn: "Prévisualiser la Conversion", selectAsset: "Sélectionner un Actif",
+                ecoTitle: "Écosystème & Stratégies Pro", ecoSubtitle: "Cliquez sur l'un des blocs ci-dessous pour explorer chaque zone du portail.",
+                tab1Name: "Activités & Récompenses", tab1Desc: "Rewards Hub, Learn & Earn et Programmes de Parrainage.",
+                tab2Name: "Earn & Binance Pool", tab2Desc: "Simple Earn, Staking et Minage Institutionnel.",
+                tab3Name: "Bots, Futures & P2P", tab3Desc: "Grid Trading, Produits Dérivés et Sécurité P2P.",
+                t1Head: "Activités, Missions et Récompenses", t1Sub: "Comment rentabiliser les campagnes de bienvenue sur Binance.",
+                t1Card1: "Tableau de bord officiel où Binance distribue des bons de réduction de frais et des vouchers après des tâches accomplies.",
+                t1Card2: "Modules éducatifs gratuits sur de nouveaux projets crypto avec des quiz rapides et des récompenses en tokens.",
+                t1Card3Title: "Programme de Parrainage", t1Card3: "Partagez votre lien d'invitation pour gagner des commissions à vie sur les frais générés par vos amis.",
+                t2Head: "Revenu Passif : Earn & Binance Pool", t2Sub: "Faites fructifier votre capital avec Simple Earn, Staking et Minage.",
+                t2Card1: "Placez vos cryptos inactives pour gagner des intérêts quotidiens avec flexibilité totale ou termes fixes avantageux.",
+                t2Card2: "Participez à la validation Proof-of-Stake (Ethereum, Cardano, Solana) et obtenez des récompenses automatiques.",
+                t2Card3: "Plateforme dédiée aux mineurs professionnels de Bitcoin (BTC), offrant des paiements quotidiens et du merged mining.",
+                t3Head: "Stratégies Avancées : Bots, Futures & P2P", t3Sub: "Automatisation des ordres, dérivés et commerce local sécurisé.",
+                t3Card1Title: "Bots de Grille (Grid Trading)", t3Card1: "Automatisez les achats bas et ventes hauts dans une fourchette de prix configurée sans surveillance constante.",
+                t3Card2Title: "Commerce P2P Avancé", t3Card2: "Utilisez des comptes bancaires dédiés, validez toujours l'extrait physique avant de libérer les fonds et faites de l'arbitrage.",
+                calcTitle: "Simulateur de Risque & Effet de Levier Futures", calcCap: "Capital Initial (USDT)", calcLev: "Effet de Levier", calcVar: "Variation de Prix Attendue (%)",
+                smcTitle: "Smart Money Concepts (SMC) & Price Action", smcSub: "Comprenez comment les institutions font bouger le marché.",
+                smc1: "Zones de haute liquidité laissées par les institutions avant une expansion agressive.",
+                smc2: "Déséquilibres du carnet d'ordres générés par des impulsions rapides agissant comme des aimants pour le prix.",
+                smc3Title: "Liquidity Sweeps", smc3: "Balayages de stops situés au-dessus des sommets ou sous les creux avant la vraie inversion institutionnelle.",
+                glossTitle: "Glossaire Essentiel Web3", glossSub: "Termes fondamentaux expliqués simplement.",
+                g1: "Vérification d'identité requise pour prévenir la fraude.", g2: "Blocage d'actifs pour valider les réseaux et générer des revenus passifs.",
+                g3: "Stratégie de détention de cryptos à long terme.", g4Title: "Bull vs Bear", g4: "Marché haussier optimiste vs cycle baissier prolongé.",
+                faqTitle: "Foire Aux Questions (FAQ)",
+                faq1Q: "La création d'un compte Binance est-elle gratuite ?", faq1A: "Oui, créer un compte et vérifier le KYC est totalement gratuit. Vous ne payez que des frais minimes lors des transactions.",
+                faq2Q: "Comment fonctionne Binance Pool ?", faq2A: "Elle regroupe la puissance de calcul de mineurs mondiaux pour trouver des blocs avec consistance et distribuer des paiements quotidiens.",
+                footerText: "Développé à des fins éducatives. Investissez de manière responsable."
+            },
+            de: {
+                navConv: "Konverter", navEco: "Ökosystem", navReg: "Registrieren",
+                heroTitle: "Das ultimative Portal zu <span>Binance</span> & Trading",
+                heroDesc: "Lernen Sie, Ihr Kapital mit Prämien, Binance Earn, Pools, Trading-Bots, Futures und fortgeschrittenem P2P-Handel zu maximieren.",
+                heroBtn: "Kostenloses Binance-Konto erstellen",
+                ctaTitle: "Treten Sie dem weltweit größten Krypto-Ökosystem bei",
+                ctaDesc: "Nutzen Sie den offiziellen Direktlink oder scannen Sie den QR-Code mit Ihrem Handy für sofortigen Zugang exklusive Vorteile:",
+                ctaRegBtn: "Bei Binance registrieren", ctaStepBtn: "Schritt-für-Schritt ansehen",
+                modalTitle: "Schritt-für-Schritt-Anleitung", modalSubtitle: "Schneller und sicherer Leitfaden für den Start.",
+                step1Title: "01. Offiziellen Link aufrufen", step1Desc: "Klicken Sie auf den Button oder scannen Sie den QR-Code, um die offizielle Willkommensseite von Binance zu öffnen.",
+                step2Title: "02. Anmeldedaten eingeben", step2Desc: "Geben Sie Ihre E-Mail oder Handynummer ein und erstellen Sie ein sicheres Passwort mit Großbuchstaben, Zahlen und Sonderzeichen.",
+                step3Title: "03. Identitätsprüfung (KYC)", step3Desc: "Senden Sie ein Klares Foto Ihres Ausweises und schließen Sie die biometrische Gesichtserkennung in Sekundenschnelle ab.",
+                step4Title: "04. Sicherheitsschutz (2FA)", step4Desc: "Richten Sie die Zwei-Faktor-Authentifizierung mit Google Authenticator ein, um Ihre Vermögenswerte zu schützen.",
+                convTitle: "Sofortige Konvertierung", convDesc: "Fortgeschrittener Echtzeit-Wechselkurs-Simulator, identisch mit dem offiziellen Binance-Panel.",
+                shortcutsLabel: "Abkürzungen:", fromLabel: "Von", toLabel: "Nach (Geschätzt)", previewBtn: "Konvertierung Vorschau", selectAsset: "Asset auswählen",
+                ecoTitle: "Ökosystem & Pro-Strategien", ecoSubtitle: "Klicken Sie auf einen der Blöcke unten, um jeden Bereich des Portals im Detail zu erkunden.",
+                tab1Name: "Aktivitäten & Prämien", tab1Desc: "Rewards Hub, Learn & Earn und Empfehlungsprogramme.",
+                tab2Name: "Earn & Binance Pool", tab2Desc: "Simple Earn, Staking und institutionelles Mining.",
+                tab3Name: "Bots, Futures & P2P", tab3Desc: "Grid Trading, Derivate und P2P-Sicherheit.",
+                t1Head: "Aktivitäten, Missionen & Prämien", t1Sub: "Wie man Willkommenskampagnen auf Binance optimal nutzt.",
+                t1Card1: "Offizielles Dashboard, über das Binance Gebührenrabatte und Token-Vouchers nach Erfüllung von Aufgaben verteilt.",
+                t1Card2: "Kostenlose Bildungsmodule zu neuen Krypto-Projekten mit kurzen Tests und direkten Token-Prämien.",
+                t1Card3Title: "Empfehlungsprogramm", t1Card3: "Teilen Sie Ihren Einladungslink, um lebenslange Provisionen auf die Handelsgebühren Ihrer Freunde zu erhalten.",
+                t2Head: "Passives Einkommen: Earn & Binance Pool", t2Sub: "Lassen Sie Ihr Kapital mit Simple Earn, Staking und Mining arbeiten.",
+                t2Card1: "Legen Sie inaktive Kryptowährungen an, um tägliche Zinsen mit flexibler Auszahlung oder festen Laufzeiten zu erhalten.",
+                t2Card2: "Nehmen Sie an der Proof-of-Stake-Validierung (Ethereum, Cardano, Solana) teil und erhalten Sie automatische Prämien.",
+                t2Card3: "Plattform für professionelle Bitcoin-Miner (BTC) mit täglichen Auszahlungen und Merge-Mining.",
+                t3Head: "Fortgeschrittene Strategien: Bots, Futures & P2P", t3Sub: "Orderautomatisierung, Derivate und sicherer Lokalhandel.",
+                t3Card1Title: "Grid-Trading-Bots", t3Card1: "Automatisieren Sie Tiefstkäufe und Hochverkäufe in einer definierten Preisspanne ohne ständige Überwachung.",
+                t3Card2Title: "Fortgeschrittener P2P-Handel", t3Card2: "Nutzen Sie dedizierte Bankkonten, prüfen Sie physische Kontoauszüge vor der Freigabe und betreiben Sie Arbitrage.",
+                calcTitle: "Futures-Risiko- & Hebel-Simulator", calcCap: "Anfangskapital (USDT)", calcLev: "Hebel", calcVar: "Erwartete Preisänderung (%)",
+                smcTitle: "Smart Money Concepts (SMC) & Price Action", smcSub: "Verstehen Sie, wie Institutionen den Markt bewegen.",
+                smc1: "Liquiditätszonen, die von Institutionen vor einer aggressiven Expansionsbewegung hinterlassen wurden.",
+                smc2: "Orderbuch-Ungleichgewichte durch schnelle Impulse, die als Magneten für den Preis wirken.",
+                smc3Title: "Liquidity Sweeps", smc3: "Abgreifen von Stop-Loss-Orders über Hochs oder unter Tiefs vor der echten institutionellen Trendumkehr.",
+                glossTitle: "Wichtiges Web3-Glossar", glossSub: "Grundlegende Begriffe einfach erklärt.",
+                g1: "Identitätsprüfung zur Betrugsprävention erforderlich.", g2: "Sperrung von Assets zur Netzwerkvalidierung und Erzielung passiven Einkommens.",
+                g3: "Strategie, Kryptowährungen langfristig zu halten.", g4Title: "Bull vs Bear", g4: "Optimistischer Bullenmarkt vs. langanhaltender Bärenzyklus.",
+                faqTitle: "Häufig gestellte Fragen (FAQ)",
+                faq1Q: "Ist die Kontoerstellung bei Binance kostenlos?", faq1A: "Ja, die Erstellung des Kontos und die KYC-Prüfung sind völlig kostenlos. Sie zahlen nur minimale Gebühren beim Handel.",
+                faq2Q: "Wie funktioniert der Binance Pool?", faq2A: "Er bündelt die Rechenleistung globaler Miner, um konsistent Blöcke zu finden und tägliche Auszahlungen zu verteilen.",
+                footerText: "Für Bildungszwecke entwickelt. Investieren Sie verantwortungsbewusst."
+            },
+            zh: {
+                navConv: "兑换", navEco: "生态系统", navReg: "注册账户",
+                heroTitle: "关于 <span>币安</span> 与交易的终极门户",
+                heroDesc: "通过奖励、币安赚币、矿池、交易机器人、合约和高级 P2P 交易学习如何让您的资本增值。",
+                heroBtn: "免费注册币安账户",
+                ctaTitle: "加入全球最大的加密货币生态系统",
+                ctaDesc: "使用官方直接链接或用手机扫描二维码，即可确保立即获得独家专享福利：",
+                ctaRegBtn: "注册币安", ctaStepBtn: "查看分步指南",
+                modalTitle: "注册账户分步指南", modalSubtitle: "助您开启交易之旅的快速安全指南。",
+                step1Title: "01. 访问官方链接", step1Desc: "点击注册按钮或扫描官方二维码，直接打开币安加密欢迎页面。",
+                step2Title: "02. 填写凭证注册", step2Desc: "输入您的常用邮箱或手机号，并设置包含大写字母、数字和特殊字符的强密码。",
+                step3Title: "03. 身份验证 (KYC)", step3Desc: "上传清晰的官方身份证件照片，并在几秒钟内完成生物面部验证。",
+                step4Title: "04. 安全防护 (2FA)", step4Desc: "必须配置谷歌身份验证器（Google Authenticator）的双重认证，以保护您的资产安全。",
+                convTitle: "即时兑换", convDesc: "与币安官方面板完全相同的先进实时兑换模拟器。",
+                shortcutsLabel: "快捷方式：", fromLabel: "从", toLabel: "至（预估）", previewBtn: "预览兑换", selectAsset: "选择资产",
+                ecoTitle: "生态系统与专业策略", ecoSubtitle: "点击下方任意板块，详细探索门户的各个区域。",
+                tab1Name: "活动与奖励", tab1Desc: "福利中心、初学赚币与推荐计划。",
+                tab2Name: "币安赚币与矿池", tab2Desc: "活期/定期赚币、质押与机构级矿池。",
+                tab3Name: "机器人、合约与 P2P", tab3Desc: "网格交易、衍生品与 P2P 安全交易。",
+                t1Head: "活动、任务与奖励", t1Sub: "如何在币安的迎新活动中获得收益。",
+                t1Card1: "币安用于分发手续费折扣券和代币代金券的官方任务面板。",
+                t1Card2: "关于新加密项目的免费教育模块，附带快速测验和直接代币奖励。",
+                t1Card3Title: "推荐返佣计划", t1Card3: "分享您的个人邀请链接，即可终身获得好友交易产生的手续费佣金。",
+                t2Head: "被动收益：赚币与矿池", t2Sub: "通过简单赚币、质押和矿池让您的资本不断增长。",
+                t2Card1: "存入闲置加密货币以赚取每日利息，支持随时灵活赎回或选择有利的定期期限。",
+                t2Card2: "参与权益证明（Proof-of-Stake）网络验证（以太坊、卡尔达诺、索拉纳）并自动获得原生奖励。",
+                t2Card3: "专为专业比特币（BTC）矿工打造的平台，提供每日收益结算和联合挖矿服务。",
+                t3Head: "高级策略：机器人、合约与 P2P", t3Sub: "订单自动化、衍生品交易与安全的本地贸易。",
+                t3Card1Title: "网格交易机器人", t3Card1: "在设定的价格区间内自动低吸高抛，无需人工持续盯盘。",
+                t3Card2Title: "高级 P2P 交易", t3Card2: "使用专属银行账户，在释放资金前务必核对官方流水账单，安全捕捉套利机会。",
+                calcTitle: "合约风险与杠杆模拟器", calcCap: "初始本金 (USDT)", calcLev: "杠杆倍数", calcVar: "预期价格波动 (%)",
+                smcTitle: "聪明钱概念 (SMC) 与价格行为学", smcSub: "了解机构主力如何在市场上操盘。",
+                smc1: "机构在发动激进拉升前留下的高流动性区域。",
+                smc2: "由快速冲动行情导致订单簿失衡留下的价格磁铁区间。",
+                smc3Title: "流动性扫盘 (Sweeps)", smc3: "在机构真正反转前，扫掉高点上方或低点下方的散户止损盘。",
+                glossTitle: "Web3 核心词汇表", glossSub: "用简单易懂的方式解释基础专业术语。",
+                g1: "为防止诈骗而必须进行的身份验证。", g2: "锁定资产以验证网络并产生被动收益的机制。",
+                g3: "长期持有加密货币的投资策略。", g4Title: "牛市 vs 熊市", g4: "乐观的牛市行情与长期的熊市周期对比。",
+                faqTitle: "常见问题 (FAQ)",
+                faq1Q: "在币安创建账户是免费的吗？", faq1A: "是的，创建账户和完成 KYC 验证完全免费。您仅在进行交易时支付极少的手续费。",
+                faq2Q: "币安矿池是如何运作的？", faq2A: "它汇集全球矿工的算力以持续稳定地寻找区块，并按比例分发每日收益。",
+                footerText: "专为教育目的开发。请理性投资，风险自担。"
+            }
+        };
+
+        function changeLanguage(lang) {
+            const elements = document.querySelectorAll('[data-i18n]');
+            elements.forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) {
+                    el.innerHTML = translations[lang][key];
+                }
+            });
+        }
+
+        // QR Code
+        new QRCode(document.getElementById("qrcode"), {
+            text: "https://www.binance.com/referral/earn-together/refer2earn-usdc/claim?hl=pt-PT&ref=GRO_28502_3DRT9&utm_source=referral_entrance",
+            width: 130,
+            height: 130,
+            colorDark : "#0b0e11",
+            colorLight : "#ffffff",
+            correctLevel : QRCode.CorrectLevel.H
+        });
+
+        // Alternar Tema Claro / Escuro
+        function toggleTheme() {
+            document.body.classList.toggle('light-theme');
+            let icon = document.getElementById('themeIcon');
+            if(document.body.classList.contains('light-theme')) {
+                icon.className = "fa-solid fa-sun";
+            } else {
+                icon.className = "fa-solid fa-moon";
+            }
+        }
+
+        // Modal de Registo
+        function openRegisterModal() {
+            document.getElementById('registerModal').classList.add('active');
+        }
+        function closeRegisterModal() {
+            document.getElementById('registerModal').classList.remove('active');
+        }
+
+        // Alternar Abas Quadradas
+        function switchTab(evt, tabId) {
+            let contents = document.getElementsByClassName("tab-content-area");
+            for (let i = 0; i < contents.length; i++) {
+                contents[i].classList.remove("active");
+            }
+            let buttons = document.getElementsByClassName("tab-square-btn");
+            for (let i = 0; i < buttons.length; i++) {
+                buttons[i].classList.remove("active");
+            }
+            document.getElementById(tabId).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+
+        // Lista de Moedas
+        const currencies = [
+            { symbol: 'USDT', name: 'TetherUS', icon: 'fa-solid fa-shield-halved', rate: 1 },
+            { symbol: 'BTC', name: 'Bitcoin', icon: 'fa-brands fa-btc', rate: 65000 },
+            { symbol: 'ETH', name: 'Ethereum', icon: 'fa-brands fa-ethereum', rate: 3500 },
+            { symbol: 'BNB', name: 'BNB', icon: 'fa-solid fa-coins', rate: 580 },
+            { symbol: 'SOL', name: 'Solana', icon: 'fa-solid fa-bolt', rate: 145 },
+            { symbol: 'ADA', name: 'Cardano', icon: 'fa-solid fa-circle-nodes', rate: 0.40 },
+            { symbol: 'XRP', name: 'XRP', icon: 'fa-solid fa-x', rate: 0.55 },
+            { symbol: 'DOGE', name: 'Dogecoin', icon: 'fa-solid fa-dog', rate: 0.12 },
+            { symbol: 'AVAX', name: 'Avalanche', icon: 'fa-solid fa-mountain', rate: 25 },
+            { symbol: 'LINK', name: 'Chainlink', icon: 'fa-solid fa-link', rate: 14 },
+            { symbol: 'SUI', name: 'Sui', icon: 'fa-solid fa-water', rate: 1.50 },
+            { symbol: 'NEAR', name: 'NEAR Protocol', icon: 'fa-solid fa-network-wired', rate: 5.20 },
+            { symbol: 'SHIB', name: 'Shiba Inu', icon: 'fa-solid fa-paw', rate: 0.000018 },
+            { symbol: 'PEPE', name: 'Pepe', icon: 'fa-solid fa-frog', rate: 0.00001 },
+            { symbol: 'USDC', name: 'USDC', icon: 'fa-solid fa-circle-dollar-to-slot', rate: 1 },
+            { symbol: 'EUR', name: 'Euro', icon: 'fa-solid fa-euro-sign', rate: 1.08 },
+            { symbol: 'USD', name: 'US Dollar', icon: 'fa-solid fa-dollar-sign', rate: 1 },
+            { symbol: 'GBP', name: 'British Pound', icon: 'fa-solid fa-sterling-sign', rate: 1.28 },
+            { symbol: 'BRL', name: 'Real Brasileiro', icon: 'fa-solid fa-brazilian-real-sign', rate: 0.18 },
+            { symbol: 'MZN', name: 'Metical Moçambicano', icon: 'fa-solid fa-money-bill-wave', rate: 0.0157 }
+        ];
+
+        let currentFrom = 'USDT';
+        let currentTo = 'BTC';
+        let activeTargetModal = null;
+
+        function openCurrencyModal(target) {
+            activeTargetModal = target;
+            document.getElementById('currencyModal').classList.add('active');
+            renderCurrencyList(currencies);
+            document.getElementById('searchInput').value = '';
+            document.getElementById('searchInput').focus();
+        }
+
+        function closeCurrencyModal() {
+            document.getElementById('currencyModal').classList.remove('active');
+        }
+
+        function renderCurrencyList(list) {
+            let container = document.getElementById('currencyList');
+            container.innerHTML = '';
+            list.forEach(item => {
+                let div = document.createElement('div');
+                div.className = 'currency-item';
+                div.onclick = () => selectCurrency(item.symbol);
+                div.innerHTML = `
+                    <div class="currency-info">
+                        <i class="${item.icon}"></i>
+                        <div>
+                            <h4>${item.symbol}</h4>
+                            <p>${item.name}</p>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        function filterCurrencies() {
+            let query = document.getElementById('searchInput').value.toLowerCase();
+            let filtered = currencies.filter(c => c.symbol.toLowerCase().includes(query) || c.name.toLowerCase().includes(query));
+            renderCurrencyList(filtered);
+        }
+
+        function selectCurrency(symbol) {
+            if(activeTargetModal === 'from') {
+                if(symbol === currentTo) currentTo = currentFrom;
+                currentFrom = symbol;
+            } else {
+                if(symbol === currentFrom) currentFrom = currentTo;
+                currentTo = symbol;
+            }
+            closeCurrencyModal();
+            calculateConversion();
+        }
+
+        function quickSelect(symbol) {
+            currentFrom = symbol;
+            if(currentFrom === currentTo) {
+                currentTo = currentFrom === 'USDT' ? 'BTC' : 'USDT';
+            }
+            calculateConversion();
+        }
+
+        function swapCurrencies() {
+            let temp = currentFrom;
+            currentFrom = currentTo;
+            currentTo = temp;
+            calculateConversion();
+        }
+
+        function calculateConversion() {
+            let amount = parseFloat(document.getElementById('amountFrom').value) || 0;
+            let objFrom = currencies.find(c => c.symbol === currentFrom) || currencies[0];
+            let objTo = currencies.find(c => c.symbol === currentTo) || currencies[1];
+
+            document.getElementById('textFrom').innerText = objFrom.symbol;
+            document.getElementById('iconFrom').className = objFrom.icon;
+            document.getElementById('textTo').innerText = objTo.symbol;
+            document.getElementById('iconTo').className = objTo.icon;
+
+            let amountInUSD = amount * objFrom.rate;
+            let finalResult = amountInUSD / objTo.rate;
+
+            let formatted = finalResult < 0.0001 ? finalResult.toFixed(8) : finalResult.toFixed(4);
+            document.getElementById('amountTo').value = formatted;
+
+            let rateText = (objFrom.rate / objTo.rate).toFixed(6);
+            document.getElementById('exchangeRateInfo').innerText = `1 ${objFrom.symbol} ≈ ${rateText} ${objTo.symbol}`;
+        }
+
+        function calculateFutures() {
+            let capital = parseFloat(document.getElementById('futuresCapital').value) || 0;
+            let leverage = parseFloat(document.getElementById('futuresLeverage').value) || 1;
+            let change = parseFloat(document.getElementById('futuresChange').value) || 0;
+
+            let positionSize = capital * leverage;
+            let estimatedProfit = positionSize * (change / 100);
+            let liquidationDrop = (100 / leverage).toFixed(1);
+
+            let resDiv = document.getElementById('futuresResult');
+            resDiv.innerHTML = `
+                <strong>Tamanho da Posição:</strong> $${positionSize.toFixed(2)}<br>
+                <strong>Lucro/Prejuízo Estimado:</strong> <span style="color: ${estimatedProfit >= 0 ? 'var(--success-color)' : '#ff4d4f'};">$${estimatedProfit.toFixed(2)}</span><br>
+                <strong>⚠️ Risco de Liquidação Direta:</strong> Uma queda contrária de ${liquidationDrop}% liquidaria a margem inicial.
+            `;
+        }
+
+        calculateConversion();
+        calculateFutures();
+
+        function toggleFaq(element) {
+            let item = element.parentElement;
+            let allItems = document.querySelectorAll('.faq-item');
+            allItems.forEach(i => {
+                if(i !== item) i.classList.remove('active');
+            });
+            item.classList.toggle('active');
+        }
+    </script>
+
+</body>
+</html>
